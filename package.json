@@ -2,6 +2,7 @@
   "private": true,
   "name": "wbq-dumiapp",
   "version": "1.0.0",
+  "homepage": "https://wangbaoqi1.github.io/wbq-dumiapp",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",

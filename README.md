@@ -115,7 +115,7 @@ export enum ItemTypes {
 ```tsx
 import { Form, Input, Select, Button } from 'antd';
 import moment from 'moment';
-import { CustomizeForm, ItemTypes, WFC } from 'wbq-dumiapp';
+import { CustomizeForm, ItemTypes, WFC } from 'ant-customize-form';
 import React, { useContext, useState } from 'react';
 const { Option } = Select;
 

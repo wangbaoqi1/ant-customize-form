@@ -38,7 +38,7 @@ export enum ItemTypes {
 ##  Form.item 的基本配置
           itemProps：对应 antd 的 <Form.Item></Form.Item> 的的属性
           type: 对应的当前使用的输入框类型  example  Input Radio 等
-          children：子node节点，或者自定义组件( 为自定义组件的时候需要通过这个获取值，const{value,onChange,item,等}=useContext(WFC) as any  )
+          children?：自定义文案，
            col?: 24,新增配置
           rowNum?：多少Form.Item为一行 example:  rowNum:2;
           typeProps：antd对应的输入框的配置属性     example: <Input {...typeProps}/>

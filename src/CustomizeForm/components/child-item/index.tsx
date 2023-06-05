@@ -1,5 +1,7 @@
+import { PlusOutlined } from "@ant-design/icons"
 import { Button, Cascader, Checkbox, DatePicker, Input, InputNumber, Radio, Select, Space, TreeSelect, Typography, Upload } from "antd"
 import { isFunction } from "lodash"
+import React from "react"
 import { useContext } from "react"
 import { ItemTypes } from "../../constant"
 import styles from '../../index.less'
@@ -29,47 +31,33 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
 
     switch (type) {
         case ItemTypes.TITLE:
-            if (typeof (item.children) !== 'string') {
-                return <WFC.Provider value={childrenProps as any}> {item.children}</WFC.Provider>
-            }
             return <Typography.Title{...childProps}>{item.children}</Typography.Title>
         case ItemTypes.INPUT:
             return <Space className={styles.InputStyles}>
                 <span>{typeProps?.firstText}</span>
-                <Input   {...childProps} placeholder='请输入' /><span>{typeProps?.lastText}
+                <Input placeholder='请输入'  {...childProps} /><span>{typeProps?.lastText}
                 </span>
             </Space>
         case ItemTypes.INPUTNUMBER:
-            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><InputNumber  {...childProps} placeholder='请输入' /><span>{typeProps?.lastText}</span></Space>
+            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><InputNumber placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
 
         case ItemTypes.SELECT:
-            if (item.children) {
-                return <Select   {...childProps} placeholder='请输入' > item.children </Select>  //自定义select选择
-            }
-            return <Select   {...childProps} placeholder='请输入' />
+            return <Select placeholder='请输入'   {...childProps} />
         case ItemTypes.RADIO:
-            if (item.children) {
-                return <Radio.Group   {...childProps}  > {item.children}</Radio.Group>
-            }
             return < Radio.Group    {...childProps} />
         case ItemTypes.TEXTAREA:
-            return <Input.TextArea   {...childProps} placeholder='请输入' />
+            return <Input.TextArea placeholder='请输入'  {...childProps} />
         case ItemTypes.UPLOAD:
             if (item.children) {
                 return <Upload   {...childProps} > {item.children} </Upload>
             }
-            return <Upload   {...childProps} />
+            return <Upload   {...childProps} >    <div>
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>上传</div>
+            </div></Upload>
         case ItemTypes.TREESELECT:
-            if (item.children) {
-                return <TreeSelect   {...childProps} > {item.children} </TreeSelect>
-            }
             return <TreeSelect   {...childProps} />
         case ItemTypes.DRAGGER:
-            if (item.children) {
-                return <Upload.Dragger   {...childProps} >
-                    {item.children}
-                </Upload.Dragger>
-            }
             return <Upload.Dragger   {...childProps} />
         case ItemTypes.CASCADER:
             return <Cascader   {...childProps} />
@@ -80,9 +68,6 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
         case ItemTypes.RANGEPICKER:
             return < DatePicker.RangePicker   {...childProps} />
         case ItemTypes.BUTTON:
-            if (item.children) {
-                return <WFC.Provider value={childrenProps as any}> {item.children}</WFC.Provider>
-            }
             return <Space className={styles.btnStyles}>
                 <Button type="primary" htmlType="submit">
                     查询
@@ -90,6 +75,10 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                 <Button htmlType="button" onClick={() => { context?.formProps?.form?.resetFields() }}>
                     重置
                 </Button>
+
+                {item.children && <Button  {...childProps} >
+                    {item.children}
+                </Button>}
             </Space>
         case ItemTypes.MOREITEM:
             return <MoreItem  {...childProps} item={item.children} />    //一个表单多个输入框的情况

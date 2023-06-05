@@ -1,5 +1,5 @@
 import { Col, Form, Row, Space } from "antd";
-import { cloneDeep, isFunction, isNumber, isObject } from "lodash";
+import { cloneDeep, isBoolean, isFunction, isNumber, isObject } from "lodash";
 import React from "react";
 import { useEffect, useState } from "react";
 import ChildItem from "./components/child-item";
@@ -17,17 +17,17 @@ const CustomizeForm = (props: FormType) => {
                     if (isFunction(j?.show)) {
                         return { ...j, show: j?.show()?.flag, showFun: j?.show() }
                     }
-                    return { ...j, show: true }
+                    return { ...j, show: isBoolean(i?.show) ? i?.show : true }
                 })
                 if (isFunction(i?.show)) {
                     return { ...i, show: i?.show()?.flag, showFun: i?.show(), children }
                 }
-                return { ...i, show: true, children }
+                return { ...i, show: isBoolean(i?.show) ? i?.show : true, children }
             }
             if (isFunction(i?.show)) {
                 return { ...i, show: i?.show()?.flag, showFun: i?.show(), }
             }
-            return { ...i, show: true }
+            return { ...i, show: isBoolean(i?.show) ? i?.show : true, }
         })
     }
 

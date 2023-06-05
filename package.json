@@ -2,6 +2,17 @@
   "private": true,
   "name": "ant-customize-form",
   "version": "1.0.0",
+  "author": "wangbaoqi",
+  "license": "MIT",
+  "keywords": [
+    "React",
+    "drag",
+    "resize"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangbaoqi1/ant-customize-form.git"
+  },
   "homepage": "https://wangbaoqi1.github.io/ant-customize-form",
   "scripts": {
     "start": "dumi dev",
@@ -17,6 +28,7 @@
   "files": [
     "dist"
   ],
+  "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "typings": "dist/esm/index.d.ts",
   "gitHooks": {

@@ -1,4 +1,4 @@
-name: ant-customize-form
+name: github pages
 on:
   push:
     branches:

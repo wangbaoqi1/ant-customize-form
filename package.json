@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "private": false,
   "name": "ant-customize-form",
   "version": "1.0.0",
   "author": "wangbaoqi",

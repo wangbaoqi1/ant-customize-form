@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "wbq-dumiapp",
+  "name": "ant-customize-form",
   "version": "1.0.0",
-  "homepage": "https://wangbaoqi1.github.io/wbq-dumiapp",
+  "homepage": "https://wangbaoqi1.github.io/ant-customize-form",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",

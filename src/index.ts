@@ -1,4 +1,3 @@
-export { CustomizeForm, ItemTypes, WFC } from './CustomizeForm';
-export { default as Foo } from './Foo';
+export { CustomizeForm, ItemTypes, WFC } from './AntCustomizeForm';
 import 'antd/dist/antd.css';
 

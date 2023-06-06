@@ -80,8 +80,6 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                     {item.children}
                 </Button>}
             </Space>
-        case ItemTypes.MOREITEM:
-            return <MoreItem  {...childProps} item={item.children} />    //一个表单多个输入框的情况
         case ItemTypes.CUSTOMIZE:
             return <WFC.Provider value={childrenProps as any}> {itemProps?.name && customize?.[itemProps?.name as any] || '未配置自定义组件'}</WFC.Provider>    //自定义组件获取formitem的值
     }

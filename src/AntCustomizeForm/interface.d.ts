@@ -7,7 +7,7 @@ type FormItem = React.ComponentProps<typeof Form.Item>;
 
 
 /**
- * rowNum是否单独一行
+ * rowNum多少个表单为一行
  * type 表单类型
  * show:联动展示dependencies：依赖项，flag
  * */

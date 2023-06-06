@@ -119,59 +119,62 @@ import { CustomizeForm, ItemTypes, WFC } from 'ant-customize-form';
 import React, { useContext, useState } from 'react';
 const { Option } = Select;
 
+const getDataText = (num: number, data: string = 'day') => {
+  let index = 1;
+  const dataArr = [];
+  while (index <= num) {
+    if (data === 'day') {
+      dataArr.push({ label: `第 ${index} 天`, value: index });
+    }
+    if (data === 'month') {
+      dataArr.push({ label: `第 ${index} 月`, value: index });
+    }
+    index++;
+  }
+  return dataArr;
+};
+
 const formConfig1 = () => {
   const [formRef] = Form.useForm();
-  const [type3, setType3] = useState('hangzhou');
-
+  const [ruleType, setRuleType] = useState(1);
   const formBaseConfig = {
-    labelCol: { span: 8 },
+    labelCol: { span: 6 },
     wrapperCol: { span: 16 },
     // formRef必填
     form: formRef,
     onValuesChange: (changedValues?: any, values?: unknown): void => {
-      formRef.setFields([
-        { name: 'name', value: 123 },
-        { name: 'read', value: 7878 },
-      ]); // 设置值的唯一方法
+      console.log(changedValues, values, 1212132312);
     },
     //设置默认值 或者 修改表单时的回显值 时间类型需要设置成moment
     initialValues: {
-      type3: 'hangzhou',
-      type4: 'hangzhou',
-      type8: 'hangzhou1',
-      type9: 'hangzhou1',
-      type10: { type101: 1, type102: 1 },
+      ruleType: 1,
+      countType: 1,
+      createType: 2,
+      autoRate: 1,
+      autoDateType: 1,
+      autoMoonNum: 1,
+      autoDateNum: 1,
+      taxRateType: 1,
     },
   };
-  const type4OptionsObj = {
-    hangzhou: [
-      { value: 'hangzhou', label: '单价*计量单位' },
-      { value: 'hangzhou1', label: '固定金额' },
+  const countTypeOptionsObj = {
+    1: [
+      { value: 1, label: '单价*计量单位' },
+      { value: 2, label: '固定金额' },
     ],
-    hangzhou1: [{ value: 'hangzhou3', label: '单价*使用量' }],
-    hangzhou2: [
-      { value: 'hangzhou', label: '单价*计量单位' },
-      { value: 'hangzhou1', label: '固定金额' },
+    2: [{ value: 1, label: '单价*使用量' }],
+    3: [
+      { value: 1, label: '单价*计量单位' },
+      { value: 2, label: '固定金额' },
     ],
-    hangzhou3: [{ value: 'hangzhou4', label: '押金' }],
+    4: [{ value: 'hangzhou4', label: '押金' }],
   };
-  // 自定义校验方法
-  const handleValidator = ({ getFieldValue }: any) => ({
-    validator(_: any, value: any) {
-      if (value || getFieldValue('password') === value) {
-        return Promise.resolve();
-      }
-      return Promise.reject(new Error('The two passwords that you entered do not match!'));
-    },
-  });
 
   // 可以在onChange里面设置其他表单的值
   const formItemConfig = [
     {
-      itemProps: { name: 'type1', label: '收费项目', rules: [{ required: true }] },
+      itemProps: { name: 'chargeCategoryId', label: '收费项目', rules: [{ required: true }] },
       type: ItemTypes.SELECT,
-      col: 24,
-      rowNum: 1,
       typeProps: {
         options: [
           { label: '项目一', value: 1 },
@@ -181,98 +184,101 @@ const formConfig1 = () => {
       },
     },
     {
-      itemProps: { name: 'type2', label: '收费标准', rules: [{ required: true }] },
+      itemProps: { name: 'name', label: '收费标准', rules: [{ required: true }] },
       type: ItemTypes.INPUT,
-      rowNum: 3,
-      typeProps: { style: { width: 200 } },
+      typeProps: {
+        showCount: true,
+        maxLength: 20,
+        style: { width: 400 },
+      },
     },
     {
-      itemProps: { name: 'type3', label: '收费类型', rules: [{ required: true }, handleValidator] },
+      itemProps: { name: 'ruleType', label: '收费类型', rules: [{ required: true }] },
       type: ItemTypes.RADIO,
       typeProps: {
         options: [
-          { value: 'hangzhou', label: '周期性收费' },
-          { value: 'hangzhou1', label: '走表收费' },
-          { value: 'hangzhou2', label: '临时性收费' },
-          { value: 'hangzhou3', label: '押金' },
+          { value: 1, label: '周期性收费' },
+          { value: 2, label: '走表收费' },
+          { value: 3, label: '临时性收费' },
+          { value: 4, label: '押金' },
         ],
         onChange: (val: { target: { value: SetStateAction<string> } }) => {
           formRef.setFieldsValue({
-            type4: type4OptionsObj[val.target.value][0].value,
+            countType: countTypeOptionsObj[val.target.value][0].value,
           });
-          setType3(val.target.value);
+          setRuleType(+val.target.value);
         },
       },
     },
     {
-      itemProps: { name: 'type4', label: '计算方式', rules: [{ required: true }, handleValidator] },
+      itemProps: { name: 'countType', label: '计算方式', rules: [{ required: true }] },
       type: ItemTypes.RADIO,
       typeProps: {
-        options: type4OptionsObj[type3],
+        options: countTypeOptionsObj[String(ruleType)],
       },
     },
     {
-      itemProps: { name: 'type5', label: '计量单位', rules: [{ required: true }] },
+      itemProps: { name: 'meteringUnitType', label: '计量单位', rules: [{ required: true }] },
       type: ItemTypes.SELECT,
-      rowNum: 3,
       show: () => {
         return {
-          dependencies: ['type4'], //依赖项
-          flag: formRef.getFieldValue('type4') === 'hangzhou', //显示的条件
+          dependencies: ['countType'], //依赖项
+          flag: formRef.getFieldValue('countType') === 1, //显示的条件
         };
       },
       typeProps: {
         options: [
-          { label: 'm2', value: 1 },
-          { label: 's', value: 2 },
+          { label: '房屋建筑面积', value: 1 },
+          { label: '房屋套内面积', value: 2 },
         ],
-        style: { width: 200 },
+        style: { width: 400 },
       },
     },
     {
-      itemProps: { name: 'type6', label: '单价', rules: [{ required: true }] },
-      type: ItemTypes.INPUT,
-
+      itemProps: { name: 'unitPrice', label: '单价', rules: [{ required: true }] },
+      type: ItemTypes.INPUTNUMBER,
       show: () => {
         return {
-          dependencies: ['type4', 'type3'], //依赖项
-          flag:
-            formRef.getFieldValue('type4') === 'hangzhou' ||
-            formRef.getFieldValue('type3') === 'hangzhou1', //显示的条件
+          dependencies: ['countType', 'ruleType'], //依赖项
+          flag: formRef.getFieldValue('countType') === 1 || formRef.getFieldValue('ruleType') === 2, //显示的条件
         };
       },
-      typeProps: { suffix: '元/m2/月', style: { width: 200 } },
+      typeProps: { min: 0, addonAfter: '元', precision: 2, style: { width: 400 } },
     },
     {
-      itemProps: { name: 'type6.1', label: '固定金额', rules: [{ required: true }] },
-      type: ItemTypes.INPUT,
+      itemProps: { name: 'fixedAmount', label: '固定金额', rules: [{ required: true }] },
+      type: ItemTypes.INPUTNUMBER,
       show: () => {
         return {
-          dependencies: ['type4'], //依赖项
-          flag: formRef.getFieldValue('type4') === 'hangzhou1', //显示的条件
+          dependencies: ['countType'], //依赖项
+          flag: formRef.getFieldValue('countType') === 2, //显示的条件
         };
       },
-      typeProps: { suffix: '元/m2/月', style: { width: 200 } },
+      typeProps: { min: 0, precision: 2, addonAfter: '元', style: { width: 400 } },
     },
     {
-      itemProps: { name: 'type6.2', label: '押金金额', rules: [{ required: true }] },
+      itemProps: {
+        name: 'ruleType.2',
+        label: '押金金额',
+        rules: [{ required: true }],
+      },
       type: ItemTypes.MOREITEM,
       show: () => {
         return {
-          dependencies: ['type3'], //依赖项
-          flag: formRef.getFieldValue('type3') === 'hangzhou3', //显示的条件
+          dependencies: ['ruleType'], //依赖项
+          flag: formRef.getFieldValue('ruleType') === 4, //显示的条件
         };
       },
       children: [
         {
-          itemProps: { name: 'type6.21', label: '押金' },
+          itemProps: { name: 'ruleType.21', label: '押金' },
           type: ItemTypes.INPUT,
           typeProps: {
             style: { width: 180 },
           },
         },
         {
-          itemProps: { name: 'type6.22', label: '收款时是否可修改押金金额' },
+          itemProps: { name: 'ruleType.22', label: '收款时是否可修改押金金额' },
           type: ItemTypes.CHECKBOX,
           typeProps: {
             style: { width: 200 },
@@ -285,158 +291,112 @@ const formConfig1 = () => {
       },
     },
     {
-      itemProps: { name: 'type6.3', label: '账单生成', rules: [{ required: true }] },
+      itemProps: { name: 'delayedNum', label: '账单生成', rules: [{ required: true }] },
       type: ItemTypes.INPUTNUMBER,
       show: () => {
         return {
-          dependencies: ['type3'], //依赖项
-          flag: formRef.getFieldValue('type3') === 'hangzhou1', //显示的条件
+          dependencies: ['ruleType'], //依赖项
+          flag: formRef.getFieldValue('ruleType') === 2, //显示的条件
         };
       },
       typeProps: {
+        min: 0,
+        precision: 2,
         firstText: '导入或录入抄表数据后，',
         lastText: '小时后，自动生成收费账单',
         style: { width: 80 },
       },
     },
-    // Cascader
     {
       itemProps: { name: 'type7', label: '计费精度', rules: [{ required: true }] },
       type: ItemTypes.SELECT,
+      show: false, //暂时不做
       typeProps: {
-        options: [
-          {
-            value: 'zhejiang',
-            label: 'Zhejiang',
-            children: [
-              {
-                value: 'hangzhou',
-                label: 'Hangzhou',
-                children: [
-                  {
-                    value: 'xihu',
-                    label: 'West Lake',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            value: 'jiangsu',
-            label: 'Jiangsu',
-            children: [
-              {
-                value: 'nanjing',
-                label: 'Nanjing',
-                children: [
-                  {
-                    value: 'zhonghuamen',
-                    label: 'Zhong Hua Men',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-        style: { width: 200 },
+        style: { width: 400 },
       },
     },
     {
-      itemProps: {
-        name: 'type8',
-        label: '账单生成模式',
-        rules: [{ required: true }, handleValidator],
-      },
+      itemProps: { name: 'createType', label: '账单生成模式', rules: [{ required: true }] },
       type: ItemTypes.RADIO,
       show: () => {
         return {
-          dependencies: ['type3'], //依赖项
-          flag: formRef.getFieldValue('type3') !== 'hangzhou3', //显示的条件
+          dependencies: ['ruleType'], //依赖项
+          flag: formRef.getFieldValue('ruleType') !== 4, //显示的条件
         };
       },
       typeProps: {
         options: [
-          { value: 'hangzhou', label: '手动生成' },
-          { value: 'hangzhou1', label: '自动生成' },
+          { value: 1, label: '手动生成' },
+          { value: 2, label: '自动生成' },
         ],
       },
     },
 
     {
-      itemProps: {
-        name: 'type9',
-        label: '账单生成频率',
-        rules: [{ required: true }, handleValidator],
-      },
+      itemProps: { name: 'autoRate', label: '账单生成频率', rules: [{ required: true }] },
       type: ItemTypes.RADIO,
       show: () => {
         return {
-          dependencies: ['type8', 'type3'], //依赖项
+          dependencies: ['createType', 'ruleType'], //依赖项
           flag:
-            formRef.getFieldValue('type8') === 'hangzhou1' &&
-            formRef.getFieldValue('type3') !== 'hangzhou3', //显示的条件
+            formRef.getFieldValue('createType') === 2 && formRef.getFieldValue('ruleType') !== 4, //显示的条件
         };
       },
       typeProps: {
         options: [
-          { value: 'hangzhou1', label: '按月生成' },
-          { value: 'hangzhou2', label: '每3个月生成' },
-          { value: 'hangzhou3', label: '每6个月生成' },
-          { value: 'hangzhou4', label: '每12个月生成' },
+          { value: 1, label: '按月生成' },
+          { value: 3, label: '每3个月生成' },
+          { value: 6, label: '每6个月生成' },
+          { value: 12, label: '每12个月生成' },
         ],
       },
     },
     // MoreItem 一个Form.Item接多个表单项
     {
-      itemProps: { name: 'type10', label: '账单生成日期', rules: [{ required: true }] },
+      itemProps: { label: '账单生成日期' },
       type: ItemTypes.MOREITEM,
       show: () => {
         return {
-          dependencies: ['type8', 'type3', 'type9'], //依赖项
+          dependencies: ['createType', 'ruleType', 'autoRate'], //依赖项
           flag:
-            formRef.getFieldValue('type8') === 'hangzhou1' &&
-            formRef.getFieldValue('type3') !== 'hangzhou3', //显示的条件
+            formRef.getFieldValue('createType') === 2 && formRef.getFieldValue('ruleType') !== 4, //显示的条件
         };
       },
       children: [
         {
-          itemProps: { name: 'type101', label: '单月' },
+          itemProps: { name: 'autoDateType' },
           type: ItemTypes.SELECT,
           typeProps: {
             style: { width: 120 },
             options: [
-              { label: '上个周期', value: 1 },
-              { label: '本周', value: 2 },
-              { label: '下一个周期', value: 3 },
+              { label: '上周期', value: 1 },
+              { label: '本期', value: 2 },
+              { label: '下周期', value: 3 },
             ],
           },
         },
         {
-          itemProps: { name: 'type102', label: '按月' },
+          itemProps: {
+            name: 'autoMoonNum',
+          },
           show: () => {
             return {
-              dependencies: ['type9'], //依赖项
-              flag: formRef.getFieldValue('type9') !== 'hangzhou1', //显示的条件
+              dependencies: ['autoRate'], //依赖项
+              flag: formRef.getFieldValue('autoRate') !== 1, //显示的条件
             };
           },
           type: ItemTypes.SELECT,
           typeProps: {
             style: { width: 120 },
-            options: [
-              { label: '第一月', value: 1 },
-              { label: '第二月', value: 2 },
-            ],
+            options: getDataText(12, 'month'),
           },
         },
         {
-          itemProps: { name: 'type103', label: '按天' },
+          itemProps: { name: 'autoDateNum', style: { display: 'inline-block', width: 10 } },
           type: ItemTypes.SELECT,
           typeProps: {
             style: { width: 120 },
-            options: [
-              { label: '第一天', value: 1 },
-              { label: '第二天', value: 2 },
-            ],
+            options: getDataText(28, 'day'),
           },
         },
       ],
@@ -445,17 +405,17 @@ const formConfig1 = () => {
       },
     },
     {
-      itemProps: { name: 'type81', label: '是否征税', rules: [{ required: true }] },
+      itemProps: { label: '是否征税' },
       type: ItemTypes.MOREITEM,
       show: () => {
         return {
-          dependencies: ['type811', 'type1'], //依赖项
+          dependencies: ['taxRateType'], //依赖项
           flag: true, //显示的条件
         };
       },
       children: [
         {
-          itemProps: { name: 'type811', label: '是否征税' },
+          itemProps: { name: 'taxRateType', rules: [{ required: true }] },
           type: ItemTypes.SELECT,
           typeProps: {
             options: [
@@ -467,11 +427,11 @@ const formConfig1 = () => {
           },
         },
         {
-          itemProps: { name: 'type812', label: '费率' },
+          itemProps: { name: 'taxRate', rules: [{ required: true }] },
           show: () => {
             return {
-              dependencies: ['type811'], //依赖项
-              flag: formRef.getFieldValue('type81')?.type811 === 1, //显示的条件
+              dependencies: ['taxRateType'], //依赖项
+              flag: formRef.getFieldValue('taxRateType') === 1, //显示的条件
             };
           },
           type: ItemTypes.INPUT,
@@ -483,21 +443,17 @@ const formConfig1 = () => {
       ],
     },
     {
-      itemProps: {
-        name: 'type11',
-        label: '支付规则',
-        rules: [{ required: true }, handleValidator],
-      },
+      itemProps: { name: 'type11', label: '支付规则', rules: [{ required: true }] },
       type: ItemTypes.SELECT,
-      rowNum: 2,
-      show: () => {
-        return {
-          dependencies: ['type3'], //依赖项
-          flag: formRef.getFieldValue('type3') !== 'hangzhou3', //显示的条件
-        };
-      },
+      // show: () => {
+      //     return {
+      //         dependencies: ['ruleType'], //依赖项
+      //         flag: formRef.getFieldValue('ruleType') !== 4 //显示的条件
+      //     }
+      // },
+      show: false, //暂时先不做
       typeProps: {
-        style: { width: 200 },
+        style: { width: 400 },
         options: [
           { value: 'hangzhou', label: '规则1' },
           { value: 'hangzhou1', label: '规则2' },
@@ -505,21 +461,13 @@ const formConfig1 = () => {
       },
     },
     {
-      itemProps: { name: 'type12', label: '备注' },
+      itemProps: { name: 'memo', label: '备注' },
       type: ItemTypes.TEXTAREA,
       typeProps: {
-        style: { width: 200 },
-      },
-    },
-    {
-      itemProps: { name: 'type13', label: '' },
-      type: ItemTypes.BUTTON,
-      typeProps: {
-        style: { width: 200 },
+        style: { width: 400 },
       },
     },
   ];
-
   return {
     col: 3,
     // space: 2,

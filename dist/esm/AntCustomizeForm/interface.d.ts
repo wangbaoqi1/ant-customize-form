@@ -14,7 +14,7 @@ type FormItem = React.ComponentProps<typeof Form.Item>;
 export interface FormItemType {
     itemProps: FormItem,
     type: ItemTypes,
-    rowNum: boolean,
+    rowNum: number,
     children: any,
     typeProps: any,
     show: () => ({ dependencies: string[], flag: boolean })

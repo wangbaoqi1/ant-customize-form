@@ -11,7 +11,6 @@ import React from "react";
 import { useContext } from "react";
 import { ItemTypes } from "../../constant";
 import styles from "../../index.less";
-import MoreItem from "../more-item";
 import WFC from "../WFC";
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
@@ -137,12 +136,6 @@ var ChildItem = function ChildItem(props) {
           children: item.children
         }))]
       });
-
-    case ItemTypes.MOREITEM:
-      return /*#__PURE__*/_jsx(MoreItem, _objectSpread(_objectSpread({}, childProps), {}, {
-        item: item.children
-      }));
-    //一个表单多个输入框的情况
 
     case ItemTypes.CUSTOMIZE:
       return /*#__PURE__*/_jsxs(WFC.Provider, {

@@ -146,8 +146,7 @@ var CustomizeForm = function CustomizeForm(props) {
 
   var groupArr = function groupArr(array, subGroupLength) {
     var index = 0;
-    var newArray = []; // 单独一行的item
-
+    var newArray = [];
     var newArr = array.filter(function (d) {
       return d === null || d === void 0 ? void 0 : d.show;
     }).map(function (a) {
@@ -179,94 +178,137 @@ var CustomizeForm = function CustomizeForm(props) {
       }
     }
 
+    console.log(newArray, '1111newArray');
     return newArray;
-  };
+  }; // 渲染表单
+
 
   var renderFormItem = function renderFormItem() {
     var optArr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    return optArr.map(function (item, index) {
-      var _item$itemProps4;
 
-      if (Array.isArray(item)) {
-        if (isNumber(space)) {
-          return /*#__PURE__*/_jsx(Space, {
-            children: item.map(function (i) {
-              if (i.type === ItemTypes.LIST) {
-                var _i$itemProps;
+    var getCol = function getCol(i) {
+      return (i === null || i === void 0 ? void 0 : i.col) && (i === null || i === void 0 ? void 0 : i.col) || 24 / col;
+    };
 
-                return formList === null || formList === void 0 ? void 0 : formList[i === null || i === void 0 ? void 0 : (_i$itemProps = i.itemProps) === null || _i$itemProps === void 0 ? void 0 : _i$itemProps.name];
-              }
+    var renderChildrenItem = function renderChildrenItem(a) {
+      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'col';
 
+      if (a.type === ItemTypes.LIST) {
+        var _a$itemProps;
+
+        return formList === null || formList === void 0 ? void 0 : formList[a === null || a === void 0 ? void 0 : (_a$itemProps = a.itemProps) === null || _a$itemProps === void 0 ? void 0 : _a$itemProps.name];
+      }
+
+      if (Array.isArray(a === null || a === void 0 ? void 0 : a.children) && (a === null || a === void 0 ? void 0 : a.children.length) > 0) {
+        if (type === 'col') {
+          return /*#__PURE__*/_jsx(Col, {
+            span: getCol(a),
+            children: /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
+              rules: [{
+                required: false
+              }]
+            }, a.itemProps), {}, {
+              children: /*#__PURE__*/_jsx(Space, {
+                children: a.children.map(function (i) {
+                  return /*#__PURE__*/_jsx(Col, {
+                    span: getCol(i),
+                    children: /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
+                      rules: [{
+                        required: false
+                      }]
+                    }, i.itemProps), {}, {
+                      noStyle: true,
+                      children: /*#__PURE__*/_jsx(ChildItem, {
+                        item: i
+                      })
+                    }))
+                  }, i.itemProps.name);
+                })
+              })
+            }))
+          }, a.itemProps.label);
+        }
+
+        return /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
+          rules: [{
+            required: false
+          }]
+        }, a.itemProps), {}, {
+          children: /*#__PURE__*/_jsx(Space, {
+            children: a.children.map(function (i) {
               return /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
                 rules: [{
                   required: false
                 }]
               }, i.itemProps), {}, {
+                noStyle: true,
                 children: /*#__PURE__*/_jsx(ChildItem, {
                   item: i
                 })
-              }));
+              }), i.itemProps.name);
+            })
+          })
+        }));
+      }
+
+      if (type === 'col') {
+        if (a.type === ItemTypes.LIST) {
+          var _a$itemProps2;
+
+          return /*#__PURE__*/_jsx(Col, {
+            span: getCol(a),
+            children: formList === null || formList === void 0 ? void 0 : formList[a === null || a === void 0 ? void 0 : (_a$itemProps2 = a.itemProps) === null || _a$itemProps2 === void 0 ? void 0 : _a$itemProps2.name]
+          }, a.itemProps.name);
+        }
+
+        return /*#__PURE__*/_jsx(Col, {
+          span: getCol(a),
+          children: /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
+            rules: [{
+              required: false
+            }]
+          }, a.itemProps), {}, {
+            children: /*#__PURE__*/_jsx(ChildItem, {
+              item: a
+            })
+          }))
+        }, a.itemProps.name);
+      }
+
+      return /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
+        rules: [{
+          required: false
+        }]
+      }, a.itemProps), {}, {
+        children: /*#__PURE__*/_jsx(ChildItem, {
+          item: a
+        })
+      }));
+    };
+
+    return optArr.map(function (item, index) {
+      if (Array.isArray(item)) {
+        if (isNumber(space)) {
+          return /*#__PURE__*/_jsx(Space, {
+            children: item.map(function (i) {
+              return renderChildrenItem(i, 'space');
             })
           }, index + 10);
         }
 
         return /*#__PURE__*/_jsx(Row, {
           children: item.map(function (i) {
-            var newCol = (i === null || i === void 0 ? void 0 : i.col) && (i === null || i === void 0 ? void 0 : i.col) || 24 / col;
-
-            if (i.type === ItemTypes.LIST) {
-              var _i$itemProps2;
-
-              return /*#__PURE__*/_jsx(Col, {
-                span: newCol,
-                children: formList === null || formList === void 0 ? void 0 : formList[i === null || i === void 0 ? void 0 : (_i$itemProps2 = i.itemProps) === null || _i$itemProps2 === void 0 ? void 0 : _i$itemProps2.name]
-              }, i.itemProps.name);
-            }
-
-            return /*#__PURE__*/_jsx(Col, {
-              span: newCol,
-              children: /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
-                rules: [{
-                  required: false
-                }]
-              }, i.itemProps), {}, {
-                children: /*#__PURE__*/_jsx(ChildItem, {
-                  item: i
-                })
-              }))
-            }, i.itemProps.name);
+            return renderChildrenItem(i, 'col');
           })
         }, index + 10);
       }
 
       if (isNumber(space)) {
-        var _item$itemProps3;
-
-        return /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
-          rules: [{
-            required: false
-          }]
-        }, item.itemProps), {}, {
-          children: item.type === ItemTypes.LIST && (formList === null || formList === void 0 ? void 0 : formList[item === null || item === void 0 ? void 0 : (_item$itemProps3 = item.itemProps) === null || _item$itemProps3 === void 0 ? void 0 : _item$itemProps3.name]) || /*#__PURE__*/_jsx(ChildItem, {
-            item: item
-          })
-        }));
+        return renderChildrenItem(item, 'space');
       }
 
-      var newCol = (item === null || item === void 0 ? void 0 : item.col) && (item === null || item === void 0 ? void 0 : item.col) || 24 / col;
       return /*#__PURE__*/_jsx(Row, {
-        children: /*#__PURE__*/_jsx(Col, {
-          span: newCol,
-          children: /*#__PURE__*/_jsx(Form.Item, _objectSpread(_objectSpread({
-            rules: [{
-              required: false
-            }]
-          }, item.itemProps), {}, {
-            children: item.type === ItemTypes.LIST && (formList === null || formList === void 0 ? void 0 : formList[item === null || item === void 0 ? void 0 : (_item$itemProps4 = item.itemProps) === null || _item$itemProps4 === void 0 ? void 0 : _item$itemProps4.name]) || /*#__PURE__*/_jsx(ChildItem, {
-              item: item
-            })
-          }))
-        })
+        children: renderChildrenItem(item, 'col')
       }, index + 20);
     });
   };

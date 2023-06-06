@@ -56,7 +56,7 @@ export enum ItemTypes {
 
          const formItemConfig=[
                  // 阶段标题的配置
-                 { itemProps: { ...layout }, type: 'Title', children: '基础信息', rowNum: true, typeProps: { level: 4 } }
+                 { itemProps: { ...layout }, type: 'Title', children: '基础信息', rowNum: 1, typeProps: { level: 4 } }
          ]
 
 
@@ -118,7 +118,6 @@ import moment from 'moment';
 import { CustomizeForm, ItemTypes, WFC } from 'ant-customize-form';
 import React, { useContext, useState } from 'react';
 const { Option } = Select;
-
 const getDataText = (num: number, data: string = 'day') => {
   let index = 1;
   const dataArr = [];
@@ -195,6 +194,7 @@ const formConfig1 = () => {
     {
       itemProps: { name: 'ruleType', label: '收费类型', rules: [{ required: true }] },
       type: ItemTypes.RADIO,
+      rowNum: 3,
       typeProps: {
         options: [
           { value: 1, label: '周期性收费' },
@@ -236,6 +236,7 @@ const formConfig1 = () => {
     },
     {
       itemProps: { name: 'unitPrice', label: '单价', rules: [{ required: true }] },
+      rowNum: 3,
       type: ItemTypes.INPUTNUMBER,
       show: () => {
         return {
@@ -406,6 +407,7 @@ const formConfig1 = () => {
     },
     {
       itemProps: { label: '是否征税' },
+      rowNum: 1,
       type: ItemTypes.MOREITEM,
       show: () => {
         return {
@@ -467,9 +469,16 @@ const formConfig1 = () => {
         style: { width: 400 },
       },
     },
+    {
+      itemProps: {},
+      type: ItemTypes.BUTTON,
+      typeProps: {
+        style: { width: 400 },
+      },
+    },
   ];
   return {
-    col: 3,
+    col: 2,
     // space: 2,
     formProps: formBaseConfig,
     formItemOption: formItemConfig,

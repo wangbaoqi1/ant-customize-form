@@ -178,7 +178,6 @@ var CustomizeForm = function CustomizeForm(props) {
       }
     }
 
-    console.log(newArray, '1111newArray');
     return newArray;
   }; // 渲染表单
 

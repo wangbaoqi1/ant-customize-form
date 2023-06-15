@@ -94,8 +94,6 @@ const CustomizeForm = (props: FormType) => {
             }
 
         }
-        console.log(newArray, '1111newArray');
-
         return newArray;
     }
     // 渲染表单

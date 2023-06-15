@@ -478,7 +478,7 @@ const formConfig1 = () => {
     },
   ];
   return {
-    col: 2,
+    col: 1,
     // space: 2,
     formProps: formBaseConfig,
     formItemOption: formItemConfig,

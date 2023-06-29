@@ -6,7 +6,7 @@ import { useContext } from "react"
 import { ItemTypes } from "../../constant"
 import styles from '../../index.less'
 import type { FormItemType } from "../../interface"
-import MoreItem from "../more-item"
+import { InboxOutlined } from '@ant-design/icons';
 import WFC from "../WFC"
 
 const ChildItem = (props: { item: FormItemType, onChange: any }) => {
@@ -58,7 +58,15 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
         case ItemTypes.TREESELECT:
             return <TreeSelect   {...childProps} />
         case ItemTypes.DRAGGER:
-            return <Upload.Dragger   {...childProps} />
+            if (item.children) {
+                return <Upload.Dragger   {...childProps} > {item.children} </Upload.Dragger>
+            }
+            return <Upload.Dragger {...childProps}>
+                <p className="ant-upload-drag-icon">
+                    <InboxOutlined />
+                </p>
+                <p className={styles.firstStyles}>点击上传或拖拽文件</p>
+            </Upload.Dragger>
         case ItemTypes.CASCADER:
             return <Cascader   {...childProps} />
         case ItemTypes.CHECKBOX:

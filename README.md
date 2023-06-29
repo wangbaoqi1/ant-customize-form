@@ -446,14 +446,16 @@ const formConfig1 = () => {
     },
     {
       itemProps: { name: 'type11', label: '支付规则', rules: [{ required: true }] },
-      type: ItemTypes.SELECT,
+      type: ItemTypes.DRAGGER,
       // show: () => {
       //     return {
       //         dependencies: ['ruleType'], //依赖项
       //         flag: formRef.getFieldValue('ruleType') !== 4 //显示的条件
       //     }
       // },
-      show: false, //暂时先不做
+      rowNum: 1,
+      // children: '上传',
+      show: true, //暂时先不做
       typeProps: {
         style: { width: 400 },
         options: [

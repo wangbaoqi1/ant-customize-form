@@ -11,6 +11,7 @@ import React from "react";
 import { useContext } from "react";
 import { ItemTypes } from "../../constant";
 import styles from "../../index.less";
+import { InboxOutlined } from '@ant-design/icons';
 import WFC from "../WFC";
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
@@ -103,7 +104,21 @@ var ChildItem = function ChildItem(props) {
       return /*#__PURE__*/_jsx(TreeSelect, _objectSpread({}, childProps));
 
     case ItemTypes.DRAGGER:
-      return /*#__PURE__*/_jsx(Upload.Dragger, _objectSpread({}, childProps));
+      if (item.children) {
+        return /*#__PURE__*/_jsxs(Upload.Dragger, _objectSpread(_objectSpread({}, childProps), {}, {
+          children: [" ", item.children, " "]
+        }));
+      }
+
+      return /*#__PURE__*/_jsxs(Upload.Dragger, _objectSpread(_objectSpread({}, childProps), {}, {
+        children: [/*#__PURE__*/_jsx("p", {
+          className: "ant-upload-drag-icon",
+          children: /*#__PURE__*/_jsx(InboxOutlined, {})
+        }), /*#__PURE__*/_jsx("p", {
+          className: styles.firstStyles,
+          children: "\u70B9\u51FB\u4E0A\u4F20\u6216\u62D6\u62FD\u6587\u4EF6"
+        })]
+      }));
 
     case ItemTypes.CASCADER:
       return /*#__PURE__*/_jsx(Cascader, _objectSpread({}, childProps));

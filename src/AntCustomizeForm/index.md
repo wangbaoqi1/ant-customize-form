@@ -32,9 +32,6 @@ export enum ItemTypes {
    2： formRef.setFields([{ name: 'name', value: 123 }, { name: 'read', value: 7878 }]) // 设置值的方法
    3： formRef.setFieldsValue({ [key:string]:123 }, { [key:string]: 7878 }) // 设置值的方法
 
-
-
-
 ##  Form.item 的基本配置
           itemProps：对应 antd 的 <Form.Item></Form.Item> 的的属性
           type: 对应的当前使用的输入框类型  example  Input Radio 等

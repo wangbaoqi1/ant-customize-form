@@ -6,6 +6,79 @@ yarn publish
 
 - 2：开箱即用，支持所有的 ant 组件属性 基本的使用
 
+- 表单类型
+- Customize 自定义组件
+- 自定义组件的所有的使用的都是 antd 组件
+- 支持多列的情况的表单
+
+````ts
+export enum ItemTypes {
+    TITLE = 'Title',
+    INPUT = 'Input',
+    SELECT = 'Select',
+    CASCADER = 'Cascader',
+    RADIO = 'Radio',
+    TEXTAREA = 'TextArea',
+    INPUTNUMBER = 'InputNumber',
+    CHECKBOX = "Checkbox",
+    UPLOAD = "Upload",
+    DRAGGER = "Dragger",
+    DATEPICKER = "DatePicker",
+    RANGEPICKER = 'RangePicker',
+    MOREITEM = 'MoreItem', //一个表单项支持多个输入框的
+    BUTTON = 'Button',
+    CUSTOMIZE = 'Customize' //自定义组件获取值
+    LIST = 'List' //Form.List 的情况单独做处理
+}
+
+#Form的基本配置注意事项,其他配置遵循  antd的form配置
+   1： const [formRef] = Form.useForm() // 注意只能使用 formRef
+   2： formRef.setFields([{ name: 'name', value: 123 }, { name: 'read', value: 7878 }]) // 设置值的方法
+   3： formRef.setFieldsValue({ [key:string]:123 }, { [key:string]: 7878 }) // 设置值的方法
+
+##  Form.item 的基本配置
+          itemProps：对应 antd 的 <Form.Item></Form.Item> 的的属性
+          type: 对应的当前使用的输入框类型  example  Input Radio 等
+          children?：自定义文案，
+           col?: 24,新增配置
+          rowNum?：多少Form.Item为一行 example:  rowNum:2;
+          typeProps：antd对应的输入框的配置属性     example: <Input {...typeProps}/>
+          typeProps:{ onChange: (val: { target: { value: SetStateAction<string> } }) => {  //可以在onChange 设置其他表单的值
+              formRef.setFieldsValue({
+                type4: type4OptionsObj[val.target.value][0].value,
+                });
+          };
+          show：是否展示当前表单项 show: () => {
+                                     return {
+                                             dependencies: ['type1'],  //依赖对应
+                                             flag: formRef.getFieldValue('type1') === 'Apple' //展示的条件
+                                             }
+                                  }
+
+         const formItemConfig=[
+                 // 阶段标题的配置
+                 { itemProps: { ...layout }, type: 'Title', children: '基础信息', rowNum: 1, typeProps: { level: 4 } }
+         ]
+
+
+ ##基本配置
+  space?:表单要分成几列   Space间距分
+  col?：表单要分成几列，默认值1列 栅格分
+  formProps：对应form的属性
+  formItemOption： @Form.item 的基本配置
+    const data1 = {
+        col: 2,//space
+        formProps：formBaseConfig,
+        formItemOption：formItemConfig,
+        customize: {
+            type1: <div>111</div> //字段key为typ1的自定义组件
+        },
+       formList: {
+            type6: <BindFeeForm form={formRef} /> //针对与Form.List的情况
+        }
+    }
+
+
 # 自定义表单 show 属性的介绍-------也是支持复杂动态表单的控制显示
 
 **Output:**
@@ -23,7 +96,7 @@ show: () => {
           flag: formRef.getFieldValue('1') === 1, //显示的条件
         };
       },
-```
+````
 
 - 2：boolen 控制表单的情况 例子联动类型 2：
 

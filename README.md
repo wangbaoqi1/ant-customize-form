@@ -453,7 +453,7 @@ export default () => {
 
 ##通过 rowNum 属性的使用
 
-![Result](/public/rowNum%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%BF%E7%94%A8.jpg)
+![Result](/public/rowNum.jpg)
 
 ```tsx
 import { CustomizeForm, ItemTypes } from 'ant-customize-form';

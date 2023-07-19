@@ -1,12 +1,10 @@
-import { PlusOutlined } from "@ant-design/icons"
-import { Button, Cascader, Checkbox, DatePicker, Input, InputNumber, Radio, Select, Space, TreeSelect, Typography, Upload } from "antd"
+import { InboxOutlined, PlusOutlined } from "@ant-design/icons"
+import { Button, Cascader, Checkbox, DatePicker, Input, InputNumber, Radio, Select, Space, TimePicker, TreeSelect, Typography, Upload } from "antd"
 import { isFunction } from "lodash"
-import React from "react"
-import { useContext } from "react"
+import React, { useContext } from "react"
 import { ItemTypes } from "../../constant"
 import styles from '../../index.less'
 import type { FormItemType } from "../../interface"
-import { InboxOutlined } from '@ant-design/icons';
 import WFC from "../WFC"
 
 const ChildItem = (props: { item: FormItemType, onChange: any }) => {
@@ -72,9 +70,24 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
         case ItemTypes.CHECKBOX:
             return <Checkbox.Group    {...childProps} />
         case ItemTypes.DATEPICKER:
-            return <DatePicker   {...childProps} />
+            return <Space className={styles.InputStyles}>
+                <span>{typeProps?.firstText}</span>
+                <DatePicker placeholder='请输入'  {...childProps} /><span>{typeProps?.lastText}
+                </span>
+            </Space>
+        case ItemTypes.TIMEPICKER:
+            return <Space className={styles.InputStyles}>
+                <span>{typeProps?.firstText}</span>
+                <TimePicker placeholder='请输入'  {...childProps} /><span>{typeProps?.lastText}
+                </span>
+            </Space>
         case ItemTypes.RANGEPICKER:
-            return < DatePicker.RangePicker   {...childProps} />
+            return <Space className={styles.InputStyles}>
+                <span>{typeProps?.firstText}</span>
+                <DatePicker.RangePicker placeholder='请输入'  {...childProps} /><span>{typeProps?.lastText}
+                </span>
+            </Space>
+
         case ItemTypes.BUTTON:
             return <Space className={styles.btnStyles}>
                 <Button type="primary" htmlType="submit">

@@ -15,6 +15,7 @@ export enum ItemTypes {
     DRAGGER = "Dragger",
     DATEPICKER = "DatePicker",
     RANGEPICKER = 'RangePicker',
+    TIMEPICKER = 'TimePicker',
     MOREITEM = 'MoreItem',//
     TREESELECT = "TreeSelect",
     BUTTON = 'Button',

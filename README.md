@@ -430,6 +430,14 @@ export default () => {
       },
     },
     {
+      itemProps: { name: '6', label: '表单6', rules: [{ required: true }] },
+      type: ItemTypes.TIMEPICKER,
+      typeProps: {
+        firstText: 1111,
+        lastText: 2222,
+      },
+    },
+    {
       itemProps: {},
       type: ItemTypes.BUTTON,
     },

@@ -40,11 +40,11 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
             return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><InputNumber placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
 
         case ItemTypes.SELECT:
-            return <Select placeholder='请输入'   {...childProps} />
+            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><Select placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
         case ItemTypes.RADIO:
-            return < Radio.Group    {...childProps} />
+            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><Radio.Group placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
         case ItemTypes.TEXTAREA:
-            return <Input.TextArea placeholder='请输入'  {...childProps} />
+            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><Input.TextArea placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
         case ItemTypes.UPLOAD:
             if (item.children) {
                 return <Upload   {...childProps} > {item.children} </Upload>
@@ -54,7 +54,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                 <div style={{ marginTop: 8 }}>上传</div>
             </div></Upload>
         case ItemTypes.TREESELECT:
-            return <TreeSelect   {...childProps} />
+            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><TreeSelect placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
         case ItemTypes.DRAGGER:
             if (item.children) {
                 return <Upload.Dragger   {...childProps} > {item.children} </Upload.Dragger>
@@ -66,9 +66,9 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                 <p className={styles.firstStyles}>点击上传或拖拽文件</p>
             </Upload.Dragger>
         case ItemTypes.CASCADER:
-            return <Cascader   {...childProps} />
+            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><Cascader placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
         case ItemTypes.CHECKBOX:
-            return <Checkbox.Group    {...childProps} />
+            return <Space className={styles.InputStyles}><span>{typeProps?.firstText}</span><Checkbox.Group placeholder='请输入'   {...childProps} /><span>{typeProps?.lastText}</span></Space>
         case ItemTypes.DATEPICKER:
             return <Space className={styles.InputStyles}>
                 <span>{typeProps?.firstText}</span>

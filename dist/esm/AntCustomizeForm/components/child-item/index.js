@@ -68,17 +68,40 @@ var ChildItem = function ChildItem(props) {
       });
 
     case ItemTypes.SELECT:
-      return /*#__PURE__*/_jsx(Select, _objectSpread({
-        placeholder: "\u8BF7\u8F93\u5165"
-      }, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(Select, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.RADIO:
-      return /*#__PURE__*/_jsx(Radio.Group, _objectSpread({}, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(Radio.Group, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.TEXTAREA:
-      return /*#__PURE__*/_jsx(Input.TextArea, _objectSpread({
-        placeholder: "\u8BF7\u8F93\u5165"
-      }, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(Input.TextArea, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.UPLOAD:
       if (item.children) {
@@ -99,7 +122,16 @@ var ChildItem = function ChildItem(props) {
       }));
 
     case ItemTypes.TREESELECT:
-      return /*#__PURE__*/_jsx(TreeSelect, _objectSpread({}, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(TreeSelect, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.DRAGGER:
       if (item.children) {
@@ -119,10 +151,28 @@ var ChildItem = function ChildItem(props) {
       }));
 
     case ItemTypes.CASCADER:
-      return /*#__PURE__*/_jsx(Cascader, _objectSpread({}, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(Cascader, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.CHECKBOX:
-      return /*#__PURE__*/_jsx(Checkbox.Group, _objectSpread({}, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(Checkbox.Group, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.DATEPICKER:
       return /*#__PURE__*/_jsxs(Space, {

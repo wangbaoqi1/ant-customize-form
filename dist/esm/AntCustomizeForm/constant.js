@@ -17,6 +17,7 @@ export var ItemTypes;
   ItemTypes["DRAGGER"] = "Dragger";
   ItemTypes["DATEPICKER"] = "DatePicker";
   ItemTypes["RANGEPICKER"] = "RangePicker";
+  ItemTypes["TIMEPICKER"] = "TimePicker";
   ItemTypes["MOREITEM"] = "MoreItem";
   ItemTypes["TREESELECT"] = "TreeSelect";
   ItemTypes["BUTTON"] = "Button";

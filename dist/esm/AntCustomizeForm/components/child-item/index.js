@@ -4,14 +4,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Cascader, Checkbox, DatePicker, Input, InputNumber, Radio, Select, Space, TreeSelect, Typography, Upload } from "antd";
+import { InboxOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Cascader, Checkbox, DatePicker, Input, InputNumber, Radio, Select, Space, TimePicker, TreeSelect, Typography, Upload } from "antd";
 import { isFunction } from "lodash";
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ItemTypes } from "../../constant";
 import styles from "../../index.less";
-import { InboxOutlined } from '@ant-design/icons';
 import WFC from "../WFC";
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
@@ -127,10 +125,40 @@ var ChildItem = function ChildItem(props) {
       return /*#__PURE__*/_jsx(Checkbox.Group, _objectSpread({}, childProps));
 
     case ItemTypes.DATEPICKER:
-      return /*#__PURE__*/_jsx(DatePicker, _objectSpread({}, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(DatePicker, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
+
+    case ItemTypes.TIMEPICKER:
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(TimePicker, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.RANGEPICKER:
-      return /*#__PURE__*/_jsx(DatePicker.RangePicker, _objectSpread({}, childProps));
+      return /*#__PURE__*/_jsxs(Space, {
+        className: styles.InputStyles,
+        children: [/*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
+        }), /*#__PURE__*/_jsx(DatePicker.RangePicker, _objectSpread({
+          placeholder: "\u8BF7\u8F93\u5165"
+        }, childProps)), /*#__PURE__*/_jsx("span", {
+          children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
+        })]
+      });
 
     case ItemTypes.BUTTON:
       return /*#__PURE__*/_jsxs(Space, {

@@ -213,7 +213,7 @@ var ChildItem = function ChildItem(props) {
 
     case ItemTypes.BUTTON:
       return /*#__PURE__*/_jsxs(Space, {
-        className: styles.btnStyles,
+        className: typeProps === null || typeProps === void 0 ? void 0 : typeProps.style,
         children: [/*#__PURE__*/_jsx(Button, {
           type: "primary",
           htmlType: "submit",
@@ -227,9 +227,10 @@ var ChildItem = function ChildItem(props) {
             renderOptions();
           },
           children: "\u91CD\u7F6E"
-        }), item.children && /*#__PURE__*/_jsx(Button, _objectSpread(_objectSpread({}, childProps), {}, {
+        }), item.children && /*#__PURE__*/_jsx(Button, {
+          type: "link",
           children: item.children
-        }))]
+        })]
       });
 
     case ItemTypes.CUSTOMIZE:

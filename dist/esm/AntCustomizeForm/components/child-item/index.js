@@ -213,7 +213,7 @@ var ChildItem = function ChildItem(props) {
 
     case ItemTypes.BUTTON:
       return /*#__PURE__*/_jsxs(Space, {
-        className: typeProps === null || typeProps === void 0 ? void 0 : typeProps.style,
+        className: _objectSpread(_objectSpread({}, styles.btnStyles), typeProps === null || typeProps === void 0 ? void 0 : typeProps.style),
         children: [/*#__PURE__*/_jsx(Button, {
           type: "primary",
           htmlType: "submit",

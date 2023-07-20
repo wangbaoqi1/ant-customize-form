@@ -89,7 +89,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
             </Space>
 
         case ItemTypes.BUTTON:
-            return <Space className={typeProps?.style}>
+            return <Space className={{ ...styles.btnStyles, ...typeProps?.style }}>
                 <Button type="primary" htmlType="submit">
                     {typeProps?.btnText || '查询'}
                 </Button>

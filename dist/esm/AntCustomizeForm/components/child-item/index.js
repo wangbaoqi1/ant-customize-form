@@ -40,7 +40,9 @@ var ChildItem = function ChildItem(props) {
 
   switch (type) {
     case ItemTypes.TITLE:
-      return /*#__PURE__*/_jsx(Typography.Title, _objectSpread(_objectSpread({}, childProps), {}, {
+      return /*#__PURE__*/_jsx(Typography.Title, _objectSpread(_objectSpread({
+        style: typeProps === null || typeProps === void 0 ? void 0 : typeProps.style
+      }, childProps), {}, {
         children: item.children
       }));
 
@@ -213,7 +215,8 @@ var ChildItem = function ChildItem(props) {
 
     case ItemTypes.BUTTON:
       return /*#__PURE__*/_jsxs(Space, {
-        className: _objectSpread(_objectSpread({}, styles.btnStyles), typeProps === null || typeProps === void 0 ? void 0 : typeProps.style),
+        style: typeProps === null || typeProps === void 0 ? void 0 : typeProps.style,
+        className: typeProps !== null && typeProps !== void 0 && typeProps.style ? '' : styles.btnStyles,
         children: [/*#__PURE__*/_jsx(Button, {
           type: "primary",
           htmlType: "submit",
@@ -227,9 +230,9 @@ var ChildItem = function ChildItem(props) {
             renderOptions();
           },
           children: "\u91CD\u7F6E"
-        }), item.children && /*#__PURE__*/_jsx(Button, {
+        }), (typeProps === null || typeProps === void 0 ? void 0 : typeProps.linkBtnText) && /*#__PURE__*/_jsx(Button, {
           type: "link",
-          children: item.children
+          children: typeProps.linkBtnText
         })]
       });
 

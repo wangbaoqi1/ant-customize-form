@@ -29,7 +29,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
 
     switch (type) {
         case ItemTypes.TITLE:
-            return <Typography.Title{...childProps}>{item.children}</Typography.Title>
+            return <Typography.Title style={typeProps?.style} {...childProps}>{item.children}</Typography.Title>
         case ItemTypes.INPUT:
             return <Space className={styles.InputStyles}>
                 <span>{typeProps?.firstText}</span>
@@ -89,7 +89,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
             </Space>
 
         case ItemTypes.BUTTON:
-            return <Space className={{ ...styles.btnStyles, ...typeProps?.style }}>
+            return <Space style={typeProps?.style} className={typeProps?.style ? '' : styles.btnStyles}>
                 <Button type="primary" htmlType="submit">
                     {typeProps?.btnText || '查询'}
                 </Button>
@@ -100,8 +100,8 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                     重置
                 </Button>
 
-                {item.children && <Button type="link" >
-                    {item.children}
+                {typeProps?.linkBtnText && <Button type="link" >
+                    {typeProps.linkBtnText}
                 </Button>}
             </Space>
         case ItemTypes.CUSTOMIZE:

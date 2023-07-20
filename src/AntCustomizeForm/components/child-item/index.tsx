@@ -12,7 +12,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
     const { type, typeProps, itemProps } = props.item
 
     const item = props.item
-    const { customize } = context
+    const { customize, renderOptions } = context
     const childrenProps = { ...props, ...context }
     const childProps = {
         ...props,
@@ -93,7 +93,10 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                 <Button type="primary" htmlType="submit">
                     查询
                 </Button>
-                <Button htmlType="button" onClick={() => { context?.formProps?.form?.resetFields() }}>
+                <Button htmlType="button" onClick={() => {
+                    context?.formProps?.form?.resetFields()
+                    renderOptions()
+                }}>
                     重置
                 </Button>
 

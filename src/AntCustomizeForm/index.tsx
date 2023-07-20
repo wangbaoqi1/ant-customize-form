@@ -1,7 +1,6 @@
 import { Col, Form, Row, Space } from "antd";
-import { cloneDeep, isBoolean, isFunction, isNumber, isObject } from "lodash";
-import React from "react";
-import { useEffect, useState } from "react";
+import { cloneDeep, isBoolean, isFunction, isNumber } from "lodash";
+import React, { useEffect, useState } from "react";
 import ChildItem from "./components/child-item";
 import WFC from "./components/WFC";
 import { ItemTypes } from "./constant";
@@ -171,6 +170,9 @@ const CustomizeForm = (props: FormType) => {
             return <Row key={index + 20}>{renderChildrenItem(item, 'col')}</Row>
         })
     }
+    const renderOptions = () => {
+        setItemOptions(getFormItemOption(formItemOption))
+    }
 
     useEffect(() => {
         setItemOptions(getFormItemOption(formItemOption))
@@ -184,7 +186,7 @@ const CustomizeForm = (props: FormType) => {
     }
 
     return <WFC.Provider value={{
-        formProps: newFormProps, itemOptions, col, customize
+        formProps: newFormProps, itemOptions, col, customize, renderOptions
     } as any} >
         <Form  {...newFormProps} >
             {space && renderFormItem(groupArr(itemOptions, space)) || renderFormItem(groupArr(itemOptions, col))}

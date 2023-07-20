@@ -26,8 +26,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 import { Col, Form, Row, Space } from "antd";
 import { cloneDeep, isBoolean, isFunction, isNumber } from "lodash";
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChildItem from "./components/child-item";
 import WFC from "./components/WFC";
 import { ItemTypes } from "./constant";
@@ -312,6 +311,10 @@ var CustomizeForm = function CustomizeForm(props) {
     });
   };
 
+  var renderOptions = function renderOptions() {
+    setItemOptions(getFormItemOption(formItemOption));
+  };
+
   useEffect(function () {
     setItemOptions(getFormItemOption(formItemOption));
   }, [JSON.stringify(formItemOption)]);
@@ -332,7 +335,8 @@ var CustomizeForm = function CustomizeForm(props) {
       formProps: newFormProps,
       itemOptions: itemOptions,
       col: col,
-      customize: customize
+      customize: customize,
+      renderOptions: renderOptions
     },
     children: /*#__PURE__*/_jsx(Form, _objectSpread(_objectSpread({}, newFormProps), {}, {
       children: space && renderFormItem(groupArr(itemOptions, space)) || renderFormItem(groupArr(itemOptions, col))

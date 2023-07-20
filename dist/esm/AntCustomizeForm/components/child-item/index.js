@@ -21,7 +21,8 @@ var ChildItem = function ChildItem(props) {
       typeProps = _props$item.typeProps,
       itemProps = _props$item.itemProps;
   var item = props.item;
-  var customize = context.customize;
+  var customize = context.customize,
+      renderOptions = context.renderOptions;
 
   var childrenProps = _objectSpread(_objectSpread({}, props), context);
 
@@ -223,6 +224,7 @@ var ChildItem = function ChildItem(props) {
             var _context$formProps, _context$formProps$fo;
 
             context === null || context === void 0 ? void 0 : (_context$formProps = context.formProps) === null || _context$formProps === void 0 ? void 0 : (_context$formProps$fo = _context$formProps.form) === null || _context$formProps$fo === void 0 ? void 0 : _context$formProps$fo.resetFields();
+            renderOptions();
           },
           children: "\u91CD\u7F6E"
         }), item.children && /*#__PURE__*/_jsx(Button, _objectSpread(_objectSpread({}, childProps), {}, {

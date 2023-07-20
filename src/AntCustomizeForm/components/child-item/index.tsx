@@ -91,7 +91,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
         case ItemTypes.BUTTON:
             return <Space className={styles.btnStyles}>
                 <Button type="primary" htmlType="submit">
-                    查询
+                    {typeProps?.btnText || '查询'}
                 </Button>
                 <Button htmlType="button" onClick={() => {
                     context?.formProps?.form?.resetFields()

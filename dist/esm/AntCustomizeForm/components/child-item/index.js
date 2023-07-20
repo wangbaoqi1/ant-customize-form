@@ -217,7 +217,7 @@ var ChildItem = function ChildItem(props) {
         children: [/*#__PURE__*/_jsx(Button, {
           type: "primary",
           htmlType: "submit",
-          children: "\u67E5\u8BE2"
+          children: (typeProps === null || typeProps === void 0 ? void 0 : typeProps.btnText) || '查询'
         }), /*#__PURE__*/_jsx(Button, {
           htmlType: "button",
           onClick: function onClick() {

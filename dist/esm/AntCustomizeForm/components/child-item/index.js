@@ -230,10 +230,11 @@ var ChildItem = function ChildItem(props) {
             renderOptions();
           },
           children: "\u91CD\u7F6E"
-        }), (typeProps === null || typeProps === void 0 ? void 0 : typeProps.linkBtnText) && /*#__PURE__*/_jsx(Button, {
-          type: "link",
+        }), (typeProps === null || typeProps === void 0 ? void 0 : typeProps.linkBtnText) && /*#__PURE__*/_jsx(Button, _objectSpread(_objectSpread({
+          type: "link"
+        }, typeProps), {}, {
           children: typeProps.linkBtnText
-        })]
+        }))]
       });
 
     case ItemTypes.CUSTOMIZE:

@@ -100,7 +100,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                     重置
                 </Button>
 
-                {typeProps?.linkBtnText && <Button type="link" >
+                {typeProps?.linkBtnText && <Button type="link"  {...typeProps}>
                     {typeProps.linkBtnText}
                 </Button>}
             </Space>

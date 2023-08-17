@@ -222,7 +222,7 @@ var ChildItem = function ChildItem(props) {
           htmlType: "submit",
           children: (typeProps === null || typeProps === void 0 ? void 0 : typeProps.btnText) || '查询'
         }), /*#__PURE__*/_jsx(Button, {
-          htmlType: "button",
+          htmlType: "submit",
           onClick: function onClick() {
             var _context$formProps, _context$formProps$fo;
 

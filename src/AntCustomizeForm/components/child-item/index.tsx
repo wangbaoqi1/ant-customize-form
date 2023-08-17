@@ -93,7 +93,7 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                 <Button type="primary" htmlType="submit">
                     {typeProps?.btnText || '查询'}
                 </Button>
-                <Button htmlType="button" onClick={() => {
+                <Button htmlType="submit" onClick={() => {
                     context?.formProps?.form?.resetFields()
                     renderOptions()
                 }}>

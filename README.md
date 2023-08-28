@@ -1,6 +1,6 @@
 # AntCustomizeForm
 
-`AntCustomizeForm` 1：安装 npm install ant-customize-form 或者 yarn add ant-customize-form 2：开箱即用，支持所有的 ant 组件属性 基本的使用
+yarn publish `AntCustomizeForm` 1：安装 npm install ant-customize-form 或者 yarn add ant-customize-form 2：开箱即用，支持所有的 ant 组件属性 基本的使用
 
 # Content
 

@@ -72,19 +72,19 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
         case ItemTypes.DATEPICKER:
             return <Space className={styles.InputStyles}>
                 <span>{typeProps?.firstText}</span>
-                <DatePicker placeholder='请输入'  {...childProps} /><span>{typeProps?.lastText}
+                <DatePicker   {...childProps} /><span>{typeProps?.lastText}
                 </span>
             </Space>
         case ItemTypes.TIMEPICKER:
             return <Space className={styles.InputStyles}>
                 <span>{typeProps?.firstText}</span>
-                <TimePicker placeholder='请输入'  {...childProps} /><span>{typeProps?.lastText}
+                <TimePicker   {...childProps} /><span>{typeProps?.lastText}
                 </span>
             </Space>
         case ItemTypes.RANGEPICKER:
             return <Space className={styles.InputStyles}>
                 <span>{typeProps?.firstText}</span>
-                <DatePicker.RangePicker placeholder='请输入'  {...childProps} /><span>{typeProps?.lastText}
+                <DatePicker.RangePicker  {...childProps} /><span>{typeProps?.lastText}
                 </span>
             </Space>
 

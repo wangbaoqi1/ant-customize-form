@@ -182,9 +182,7 @@ var ChildItem = function ChildItem(props) {
         className: styles.InputStyles,
         children: [/*#__PURE__*/_jsx("span", {
           children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
-        }), /*#__PURE__*/_jsx(DatePicker, _objectSpread({
-          placeholder: "\u8BF7\u8F93\u5165"
-        }, childProps)), /*#__PURE__*/_jsx("span", {
+        }), /*#__PURE__*/_jsx(DatePicker, _objectSpread({}, childProps)), /*#__PURE__*/_jsx("span", {
           children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
         })]
       });
@@ -194,9 +192,7 @@ var ChildItem = function ChildItem(props) {
         className: styles.InputStyles,
         children: [/*#__PURE__*/_jsx("span", {
           children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
-        }), /*#__PURE__*/_jsx(TimePicker, _objectSpread({
-          placeholder: "\u8BF7\u8F93\u5165"
-        }, childProps)), /*#__PURE__*/_jsx("span", {
+        }), /*#__PURE__*/_jsx(TimePicker, _objectSpread({}, childProps)), /*#__PURE__*/_jsx("span", {
           children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
         })]
       });
@@ -206,9 +202,7 @@ var ChildItem = function ChildItem(props) {
         className: styles.InputStyles,
         children: [/*#__PURE__*/_jsx("span", {
           children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.firstText
-        }), /*#__PURE__*/_jsx(DatePicker.RangePicker, _objectSpread({
-          placeholder: "\u8BF7\u8F93\u5165"
-        }, childProps)), /*#__PURE__*/_jsx("span", {
+        }), /*#__PURE__*/_jsx(DatePicker.RangePicker, _objectSpread({}, childProps)), /*#__PURE__*/_jsx("span", {
           children: typeProps === null || typeProps === void 0 ? void 0 : typeProps.lastText
         })]
       });
@@ -227,7 +221,6 @@ var ChildItem = function ChildItem(props) {
             var _context$formProps, _context$formProps$fo;
 
             context === null || context === void 0 ? void 0 : (_context$formProps = context.formProps) === null || _context$formProps === void 0 ? void 0 : (_context$formProps$fo = _context$formProps.form) === null || _context$formProps$fo === void 0 ? void 0 : _context$formProps$fo.resetFields();
-            renderOptions();
           },
           children: "\u91CD\u7F6E"
         }), (typeProps === null || typeProps === void 0 ? void 0 : typeProps.linkBtnText) && /*#__PURE__*/_jsx(Button, _objectSpread(_objectSpread({

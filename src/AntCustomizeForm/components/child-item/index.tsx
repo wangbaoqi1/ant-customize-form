@@ -94,8 +94,10 @@ const ChildItem = (props: { item: FormItemType, onChange: any }) => {
                     {typeProps?.btnText || '查询'}
                 </Button>
                 <Button htmlType="submit" onClick={() => {
-                    renderOptions()
                     context?.formProps?.form?.resetFields()
+                    setTimeout(() => {
+                        renderOptions()
+                    }, 1000)
                 }}>
                     重置
                 </Button>
